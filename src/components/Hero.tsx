@@ -1,15 +1,35 @@
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ArrowRight, Github, Linkedin } from "lucide-react";
+import { useState } from "react";
+
+// Helper component for the shooting "noodles"
+const ShootingNoodle = ({ delay, duration, top }: { delay: number; duration: number; top: string }) => {
+  return (
+    <motion.div
+      initial={{ left: "-10%", opacity: 0 }}
+      animate={{
+        left: ["-10%", "110%"],
+        opacity: [0, 1, 0],
+      }}
+      transition={{
+        duration: duration,
+        repeat: Infinity,
+        ease: "linear",
+        delay: delay,
+      }}
+      style={{ top }}
+      className="absolute h-[1px] w-32 bg-gradient-to-r from-transparent via-blue-400 to-transparent z-0 pointer-events-none"
+    />
+  );
+};
 
 export const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Smooth out the mouse movement
   const springConfig = { damping: 25, stiffness: 700 };
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
@@ -27,18 +47,24 @@ export const Hero = () => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <ShootingNoodle delay={0} duration={4} top="20%" />
+        <ShootingNoodle delay={2} duration={5} top="50%" />
+        <ShootingNoodle delay={1} duration={3} top="80%" />
+      </div>
+
       {/* Beam Animation Overlay */}
       <motion.div
-        className="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
         style={{
           opacity: isHovered ? 1 : 0,
-          background: `radial-gradient(600px circle at ${smoothX}px ${smoothY}px, rgba(59, 130, 246, 0.15), transparent 80%)`,
+          background: `radial-gradient(600px circle at ${smoothX}px ${smoothY}px, rgba(96, 165, 250, 0.4), rgba(37, 99, 235, 0.2), transparent 80%)`,
         }}
       />
       
-      {/* The actual beam/ring around the mouse */}
+      {/* Ring around mouse */}
       <motion.div
-        className="pointer-events-none absolute z-10 w-64 h-64 rounded-full border border-blue-500/30 blur-2xl"
+        className="pointer-events-none absolute z-10 w-64 h-64 rounded-full border border-blue-500/60 blur-xl"
         style={{
           left: smoothX,
           top: smoothY,
@@ -46,6 +72,7 @@ export const Hero = () => {
           y: "-50%",
           opacity: isHovered ? 1 : 0,
           scale: isHovered ? 1 : 0.5,
+          background: "radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)"
         }}
       />
 
@@ -53,7 +80,8 @@ export const Hero = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="relative z-10 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm mb-6 backdrop-blur-sm"
+        // UPDATED: Light/Dark mode colors
+        className="relative z-10 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-600 dark:text-zinc-200 text-sm mb-6 backdrop-blur-sm"
       >
         <span className="relative flex h-2 w-2">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
@@ -69,7 +97,6 @@ export const Hero = () => {
         className="relative z-10 text-5xl md:text-8xl font-bold mb-6 tracking-tighter group/name"
       >
         <span className="relative inline-block">
-          {/* Unicorn Studio dynamic glow effect */}
           <motion.span 
             animate={{ 
               opacity: [0.3, 0.6, 0.3],
@@ -92,10 +119,11 @@ export const Hero = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="relative z-10 text-lg md:text-2xl text-zinc-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed"
+        // UPDATED: Text colors
+        className="relative z-10 text-lg md:text-2xl text-zinc-500 dark:text-zinc-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed"
       >
-        Aspiring <span className="text-white font-medium">Software Engineer</span>. 
-        Specializing in <span className="text-blue-400/80">Business Analytics</span> & <span className="text-blue-400/80">Digital Cloud Solutions</span>.
+        Aspiring <span className="text-black dark:text-white font-medium">Software Engineer</span>. 
+        Specializing in <span className="text-blue-500 dark:text-blue-400/80">Business Analytics</span> & <span className="text-blue-500 dark:text-blue-400/80">Digital Cloud Solutions</span>.
       </motion.p>
 
       <motion.div
@@ -112,10 +140,12 @@ export const Hero = () => {
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </a>
         <div className="flex items-center gap-3">
-          <a href="https://github.com/henryleehks" target="_blank" rel="noopener noreferrer" className="p-4 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all active:scale-95">
+          <a href="https://github.com/henryleehks" target="_blank" rel="noopener noreferrer" 
+             className="p-4 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10 text-zinc-600 dark:text-white transition-all active:scale-95">
             <Github className="w-5 h-5" />
           </a>
-          <a href="https://www.linkedin.com/in/hein-kyaw-soe" target="_blank" rel="noopener noreferrer" className="p-4 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all active:scale-95">
+          <a href="https://www.linkedin.com/in/hein-kyaw-soe" target="_blank" rel="noopener noreferrer" 
+             className="p-4 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10 text-zinc-600 dark:text-white transition-all active:scale-95">
             <Linkedin className="w-5 h-5" />
           </a>
         </div>
@@ -123,4 +153,3 @@ export const Hero = () => {
     </section>
   );
 };
-

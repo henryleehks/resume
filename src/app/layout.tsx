@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Background } from "@/components/Background";
 import { MusicToggle } from "@/components/MusicToggle";
+import { Navbar } from "@/components/Navbar";
 import { AudioProvider } from "@/hooks/AudioContext";
 
 const geistSans = Geist({
@@ -32,6 +33,7 @@ export default function RootLayout({
       >
         <AudioProvider>
           <Background />
+          <Navbar />
           <MusicToggle />
           <main className="relative z-0">
             {children}
