@@ -39,6 +39,33 @@ export default function Home() {
         <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-b from-blue-400 via-blue-500 to-blue-600 pb-2">
           About Me
         </h2>
+
+        {/* --- NEW BIO SECTION STARTS HERE --- */}
+        <div className="flex flex-col md:flex-row items-center gap-10 mb-16 max-w-4xl mx-auto px-4">
+          
+          {/* Profile Image */}
+          <div className="relative w-48 h-48 shrink-0">
+            <img 
+              src="/image_1f2bbc.png" 
+              alt="Hein Kyaw Soe" 
+              className="w-full h-full rounded-2xl object-cover border-4 border-blue-600 shadow-[0_0_20px_rgba(37,99,235,0.5)]"
+            />
+          </div>
+
+          {/* Bio Text */}
+          <div className="text-center md:text-left">
+            <p className="leading-relaxed text-base text-zinc-400">
+              I am an Aspiring Software Engineer and a B.Sc. Information Systems 
+              undergraduate at Singapore Management University. Specializing in 
+              Business Analytics & Digital Cloud Solutions, I have hands-on experience 
+              as a Backend Developer Intern at Solve Education! Foundation. 
+              Beyond coding, I am active in the tech community as a HEAP Mentor 
+              for SMU .Hack.
+            </p>
+          </div>
+        </div>
+        {/* --- NEW BIO SECTION ENDS HERE --- */}
+
         <BentoGrid>
           {/* Education - Large Item */}
           <GridItem 
