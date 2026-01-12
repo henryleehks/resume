@@ -123,7 +123,7 @@ export const Hero = () => {
         className="relative z-10 text-lg md:text-2xl text-zinc-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed"
       >
         Aspiring <span className="text-white font-medium">Software Engineer</span>. 
-        Specializing in <span className="text-blue-400/80">Business Analytics</span> & <span className="text-blue-400/80">Digital Cloud Solutions</span>.
+        Specializing in <span className="text-blue-500 dark:text-blue-400/80">Business Analytics</span> & <span className="text-blue-500 dark:text-blue-400/80">Digital Cloud Solutions</span>.
       </motion.p>
 
       <motion.div
