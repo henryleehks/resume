@@ -80,8 +80,8 @@ export const Hero = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        // UPDATED: Light/Dark mode colors
-        className="relative z-10 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-600 dark:text-zinc-200 text-sm mb-6 backdrop-blur-sm"
+        // FIXED: Enforced Dark Mode Styles (bg-white/5, text-zinc-200)
+        className="relative z-10 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-zinc-200 text-sm mb-6 backdrop-blur-sm"
       >
         <span className="relative flex h-2 w-2">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
@@ -109,7 +109,7 @@ export const Hero = () => {
             }}
             className="absolute -inset-8 bg-blue-500/20 blur-[60px] rounded-full pointer-events-none z-[-1]" 
           />
-          <span className="bg-linear-to-b from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(59,130,246,0.4)]">
+          <span className="bg-gradient-to-b from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(59,130,246,0.4)]">
             Hein Kyaw Soe
           </span>
         </span>
@@ -119,11 +119,11 @@ export const Hero = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        // UPDATED: Text colors
-        className="relative z-10 text-lg md:text-2xl text-zinc-500 dark:text-zinc-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed"
+        // FIXED: Enforced Dark Mode Text Colors
+        className="relative z-10 text-lg md:text-2xl text-zinc-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed"
       >
-        Aspiring <span className="text-black dark:text-white font-medium">Software Engineer</span>. 
-        Specializing in <span className="text-blue-500 dark:text-blue-400/80">Business Analytics</span> & <span className="text-blue-500 dark:text-blue-400/80">Digital Cloud Solutions</span>.
+        Aspiring <span className="text-white font-medium">Software Engineer</span>. 
+        Specializing in <span className="text-blue-400/80">Business Analytics</span> & <span className="text-blue-400/80">Digital Cloud Solutions</span>.
       </motion.p>
 
       <motion.div
@@ -140,12 +140,13 @@ export const Hero = () => {
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </a>
         <div className="flex items-center gap-3">
+          {/* FIXED: Enforced Dark Mode Button Styles */}
           <a href="https://github.com/henryleehks" target="_blank" rel="noopener noreferrer" 
-             className="p-4 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10 text-zinc-600 dark:text-white transition-all active:scale-95">
+             className="p-4 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-white transition-all active:scale-95">
             <Github className="w-5 h-5" />
           </a>
           <a href="https://www.linkedin.com/in/hein-kyaw-soe" target="_blank" rel="noopener noreferrer" 
-             className="p-4 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10 text-zinc-600 dark:text-white transition-all active:scale-95">
+             className="p-4 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-white transition-all active:scale-95">
             <Linkedin className="w-5 h-5" />
           </a>
         </div>
